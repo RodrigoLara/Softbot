@@ -1,0 +1,43 @@
+body {
+	background-color: silver;
+}
+
+h1 {
+	margin-bottom: 10px;
+	margin-left: 30px;
+	margin-right: 20px;
+	margin-top: 10px;
+	font-family: verdana, sans-serif;
+}
+
+div {
+	width: 300px;
+	height: auto;
+	margin-top: 10px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+	margin-left: 30px;
+}
+
+input {
+	margin-bottom: 10px;
+	margin-left: 20px
+}
+
+button {
+	margin-top: 10px;
+	margin-left: 70px;
+}
+
+#div_softbot {
+	position: absolute;
+	top: 50px;
+	left: 350px;
+	width: 500px;
+	height: auto;
+}
+
+#div_metodo input {
+	margin-left:10px;
+	width:150px
+}

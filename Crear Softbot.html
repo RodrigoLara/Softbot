@@ -1,0 +1,147 @@
+<!--
+Autor: Ramón Rodrigo Lara Ruano
+Fecha de creacion: domingo, 04 de diciembre de 2011
+Descripcion: Ejemplo de softbot para Sistemas de Información Inteligente.
+www.upiicsalibre.org
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Crear Softbot</title>
+	</head>
+	<script lang="javascript">
+			var nodos_cierre = [];
+			var num = 0;
+
+            function crear_softbot() {    
+                var name_soft = document.getElementById("nombre_softbot");
+                if(name_soft.value != "") {
+                    var div = document.createElement("div");
+                    div.id = "div_softbot";
+                    div.name = "div_softbot";
+                   
+                    div.appendChild(document.createTextNode("<softbot name = '" + name_soft.value + "'>"));
+                    div.appendChild(document.createElement("br"));
+                    document.body.appendChild(div);
+                    
+                    nodos_cierre[num] = "</softbot>";
+                    num++;
+                    name_soft.readOnly = true;
+                }
+                else {
+                    alert("Debe poner nombre al softbot");
+                }
+			}
+			
+			function agregar_nodo() {
+    			var name_soft = document.getElementById("nombre_softbot");
+				if(name_soft.readOnly) {
+				    var seleccion = document.getElementById("tipo_nodo");
+                    if(seleccion.value != "Seleccione una opcion"){       
+                        var etiqueta = document.getElementById("etiqueta");
+                        if(etiqueta.value != "") {
+                            var div = document.getElementById("div_softbot");
+                            if(seleccion.value == "Terminal"){
+                                var dato = document.getElementById("dato");
+                                var lbl_tipo = document.getElementById("lbl_tipo");
+                                var tipo = document.getElementById("tipos");
+                                if(dato.value != "") {
+                                    div.appendChild(document.createTextNode("<" + etiqueta.value + ">" + dato.value + "</" + etiqueta.value + ">"));
+                                    div.appendChild(document.createElement("br"));
+                                    div.appendChild(document.createTextNode("<" + lbl_tipo.innerHTML.toLowerCase() + ">" + tipo.value.toLowerCase() + "</" + lbl_tipo.innerHTML.toLowerCase() + ">"));
+                                    div.appendChild(document.createElement("br"));
+                                }
+                                else {
+                                    alert("Debe escribir un valor para el dato de la etiqueta");
+                                }
+                                dato.value = "";
+                            }
+        				    else if(seleccion.value == "No terminal") {
+                               div.appendChild(document.createTextNode("<" + etiqueta.value + ">"));
+                               div.appendChild(document.createElement("br"));
+                               
+                               nodos_cierre[num] = "</" + etiqueta.value + ">"; 
+                               num++;
+        	               }     
+    	               }
+    	               else {
+    	                   alert("Debe escribir un nombre para la etiqueta");
+    	               }
+    	               etiqueta.value = "";
+	               }
+	               else {
+	                   alert("Debe seleccionar un tipo de nodo");
+	               }
+                }
+				else {
+					alert("Debe crear el softbot primero");
+				}
+			}
+			
+			function cerrar_nodos() {
+                var name_soft = document.getElementById("nombre_softbot");
+				if(name_soft.readOnly) {
+				    var div = document.getElementById("div_softbot");
+                    for(var i = nodos_cierre.length; i != 0; i--) {
+                        div.appendChild(document.createTextNode(nodos_cierre[i-1]));
+                        div.appendChild(document.createElement("br"));
+                    }
+                }
+                else{
+                    alert("Debe crear el softbot primero");
+                }
+			}
+			
+			function ocultar_mostrar(value) {
+				if(value == "Terminal") {
+					document.getElementById("lbl_etiqueta").style.display="";
+					document.getElementById("etiqueta").style.display="";
+					document.getElementById("terminal").style.display="";
+				}
+				else if(value == "No terminal"){
+				    document.getElementById("lbl_etiqueta").style.display="";
+					document.getElementById("etiqueta").style.display="";
+					document.getElementById("terminal").style.display="none";
+				}
+			}
+	</script>
+	<body onload="javascript:document.getElementById('lbl_etiqueta').style.display='none';document.getElementById('etiqueta').style.display='none';document.getElementById('terminal').style.display='none';">
+		<div id="div_gui" name="div_gui" size="width=300">
+			<div id="capa1" align="left" style="margin:20px 0 0 30px">
+				<label for="nombre_softbot">Softbot</label>
+				<input id="nombre_softbot" name="nombre_softbot" style="margin:0 0 0 20px" type="text"/>
+				<button id="crear_softbot" name="crear_softbot" style="margin:20px 0 0 10px" onclick="crear_softbot()">Crear Softbot</button>
+				<br/><br/>
+			</div>
+			
+			<div id="capa2" align="left" style="margin:10px 0 0 20px;width:300px">
+				<fieldset> 
+					<legend>Crear Nodo</legend>
+					<label for="tipo_nodo">Tipo de nodo</label>
+					<select id="tipo_nodo" name="tipo_nodo" style="margin:0 0 10px 10px;width:160px" onchange="ocultar_mostrar(value)">
+						<option>Seleccione una opcion</option>
+						<option>Terminal</option>
+						<option>No terminal</option>
+					</select><br/><br/>
+					<label id="lbl_etiqueta" name="lbl_etiqueta" for="etiqueta">Etiqueta</label>
+					<input id="etiqueta" name="etiqueta" style="margin:0 0 10px 10px" type="text"/><br/>
+					<div id="terminal" name="terminal">
+						<label for="dato">Dato</label>
+						<input id="dato" style="margin:0 0 10px 30px" type="text"/><br/>
+						<label id="lbl_tipo" for="tipos">Tipo</label>
+						<select id="tipos" style="margin:0 0 10px 30px;width:160px">
+							<option>Texto</option>
+							<option>Númerico</option>
+							<option>Lógico</option>
+						</select>
+						<br/>
+					</div>
+					<button id="agregar_nodo" name="agregar_nodo" style="margin:20px 0 0 60px;width:160px" onclick="agregar_nodo()">Agregar Nodo</button>
+				</fieldset>
+			</div>
+		</div> 
+        <button id="cerrar_nodos" name="cerrar_nodos" style="margin:20px 0 0 30px" onclick="cerrar_nodos()">Finalizar Softbot</button>
+        <label>Presione "Finalizar Softbot" cuando termine de agregar los nodos que necesita</label> <br/><br/>
+	</body>
+</html>

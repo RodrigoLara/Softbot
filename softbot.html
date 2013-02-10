@@ -1,0 +1,107 @@
+<!--
+Autor: Ramón Rodrigo Lara Ruano
+Fecha de creacion: domingo, 04 de diciembre de 2011
+Descripcion: Ejemplo de softbot para Sistemas de Información Inteligente.
+www.upiicsalibre.org
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Crear Softbot</title>
+		
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+        <script type="text/javascript" src="js/script.js"></script>        
+	</head>
+	<body onload="ocultar()">
+		<h1>Ejemplo de Gadget - Sistemas de Información Inteligentes</h1>
+		<div id="div_gui">
+			<div id="div_crear_softbot">
+				<fieldset>
+					<legend>Crear Softbot</legend>
+					<label for="nombre_softbot">Softbot</label>
+					<input id="nombre_softbot" type="text" />
+					<button id="crear_softbot" onclick="crear_softbot()">Crear Softbot</button>
+				</fieldset>
+			</div>
+			
+			<div id="div_no_terminal">
+				<fieldset>
+					<legend>Elemento no terminal</legend>
+					<label for="etiqueta">Etiqueta</label>
+					<input id="etiqueta" type="text" onfocus="guardar()" />
+					<button id="agregar_nodo_no_terminal" onclick="agregar_nodo_no_terminal()"> Agregar nodo no terminal </button>
+				</fieldset>
+			</div>
+			
+			<div id="div_terminal">
+				<fieldset> 
+					<legend>Elemento terminal</legend>
+					<label for="etiqueta_terminal">Etiqueta</label>
+					<input id="etiqueta_terminal" type="text" /> <br />
+					<label for="dato">Dato</label>
+					<input id="dato" type="text" style="margin-left: 40px" /><br/>
+					<label id="lbl_tipo" for="tipos">Tipo</label>
+					<select id="tipo" style="margin:0 0 10px 42px;width:155px">
+						<option>Texto</option>
+						<option>Númerico</option>
+						<option>Lógico</option>
+					</select>
+					<button id="agregar_nodo_terminal" onclick="agregar_nodo_terminal()">Agregar nodo terminal</button>
+				</fieldset>
+				<button id="cerrar_no_terminal" style="" onclick="cerrar_no_terminal()">Cerrar elemento no terminal</button>
+			</div>
+
+			<div id="div_metodo">
+				<fieldset>
+					<legend>Metodo</legend>
+					<fieldset>
+						<legend>Declaración</legend>
+						<label for="nombre_metodo">Nombre</label>
+						<input id="nombre_metodo" type="text" style="margin-left:20px" />
+						<label for="tipos_metodo">Tipo</label>
+						<select id="tipos_metodo" style="margin:0 0 10px 42px;width:155px">
+							<option>Texto</option>
+							<option>Númerico</option>
+							<option>Lógico</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<legend>Condición</legend>
+						<label for="operando1_metodo">Operando</label>
+						<input id="operando1_metodo" type="text" />
+						<label for="operadores_metodo">Operador</label>
+						<select id="operadores_metodo" style="margin:0 0 10px 12px;width:155px">
+							<option><</option>
+							<option>></option>
+							<option>=</option>
+							<option><=</option>
+							<option>>=</option>
+						</select>
+						<label for="operando2_metodo">Operando</label>
+						<input id="operando2_metodo" type="text" />
+					</fieldset>
+					<fieldset>
+						<legend>Asignación</legend>
+						<label for="variable_metodo">Variable</label>
+						<input id="variable_metodo" type="text" style="margin-left:20px" />
+					</fieldset>
+					
+					<button id="agregar_metodo" onclick="agregar_metodo()">Agregar metodo</button>
+				</fieldset>
+				<button id="finalizar_softbot" style="" onclick="finalizar_softbot()">Finalizar Softbot</button>
+			</div>
+			
+		</div>    
+		
+		<div id="div_softbot">
+				<fieldset id="softbot">
+					<legend>Ver softbot</legend>
+				</fieldset>
+				<p>Powered by <a href="http://www.twitter.com/rodrigolara0" target="_blank">@rodrigolara0</a><br />
+				No olvides visitar: <a href="http://www.upiicsalibre.org" target="_blank">upiicsalibre.org</a>
+				</p>
+		</div>
+	</body>
+</html>
